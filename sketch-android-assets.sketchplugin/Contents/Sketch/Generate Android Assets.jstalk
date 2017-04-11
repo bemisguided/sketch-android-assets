@@ -88,7 +88,9 @@ library.sandbox = {
     }
 }
 
-function main() {
+function onRun(context) {
+    var selection = context.selection;
+    var doc = context.document;
     var fileUrl = [doc fileURL];
     if (fileUrl == null) {
         alert("You need to save your document for me to know where to save it");
@@ -111,7 +113,7 @@ function main() {
 
     var factors = library.sandbox.getDensityFactors(density);
 
-    var base_dir = get_dir_from_prompt(get_cwd());
+    var base_dir = get_dir_from_prompt(doc);  // TODO figure out how get_cwd() needs to be added back
     if (base_dir == null) {
         alert("Not saving any assets");
         return;
@@ -168,7 +170,7 @@ function alert(msg) {
 // Return current working directory
 // This works better for the designer's workflow, as they mostly want to
 // save assets in the current directory
-function get_cwd() {
+function get_cwd(doc) {
     var file_url = [doc fileURL],
     file_path = [file_url path],
     base_dir = file_path.split([doc displayName])[0];
@@ -176,7 +178,7 @@ function get_cwd() {
 }
 
 // Let the user specify a directory
-function get_dir_from_prompt() {
+function get_dir_from_prompt(doc) {
     var panel = [NSOpenPanel openPanel];
     [panel setMessage:"Where do you want to place your assets?"];
     [panel setCanChooseDirectories: true];
@@ -252,5 +254,3 @@ function copy_layer_with_factor(original_slice, factor) {
     [copy removeFromParent];
     return request;
 }
-
-main();

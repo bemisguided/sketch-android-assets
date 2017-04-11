@@ -1,0 +1,24 @@
+{
+  "name": "Sketch Android Assets",
+  "description": "Plugins to export Android assets",
+  "author": "zmalltalker",
+  "homepage": "https://github.com/zmalltalker/sketch-android-assets",
+  "version": 2.0,
+  "identifier": "com.zmalltalker.sketch.android-assets",
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "script": "Generate Android Assets.jstalk",
+      "handler": "onRun",
+      "shortcut": "ctrl alt a",
+      "name": "Generate Android Assets",
+      "identifier": "generate-android-assets"
+    }
+  ],
+  "menu": {
+    "items": [
+      "generate-android-assets"
+    ]
+  }
+}
